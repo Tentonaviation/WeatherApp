@@ -17,7 +17,18 @@ struct ContentView: View {
                 Text("London, UK")
                     .font(.system(size: 32, weight: .medium, design: .default))
                     .foregroundColor(.white)
-                    .padding(.bottom)
+                    .padding()
+                
+                VStack(spacing: 8) {
+                    Image(systemName: "cloud.sun.fill")
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 180, height: 180)
+                    Text("19°")
+                        .font(.system(size: 70, weight: .medium))
+                        .foregroundColor(.white)
+                }
                 Spacer()
             }
         }
