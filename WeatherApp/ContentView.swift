@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]),              startPoint: .topLeading,
+            LinearGradient(gradient: Gradient(colors: [.blue, Color("lightBlue")]),              startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack {
@@ -29,7 +29,16 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
                 }
-                Spacer()
+                .padding(.bottom, 50)
+                
+                HStack(spacing: 20) {
+                    WeatherDayView(day: "MON", imageName: "cloud.sun.fill", temp: 65)
+                    WeatherDayView(day: "TUE", imageName: "sun.max.fill", temp: 78)
+                    WeatherDayView(day: "WED", imageName: "wind", temp: 74)
+                    WeatherDayView(day: "THU", imageName: "thermometer.high", temp: 79)
+                    WeatherDayView(day: "FRI", imageName: "cloud.fill", temp: 64)
+                }
+               Spacer()
             }
         }
     }
@@ -38,5 +47,28 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WeatherDayView: View {
+    
+    var day: String
+    var imageName: String
+    var temp: Int
+    
+    var body: some View {
+        VStack {
+            Text(day)
+                .font(.system(size: 16, weight: .medium, design: .default))
+                .foregroundColor(.white)
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+            Text("\(temp)°")
+                .font(.system(size: 28, weight: .medium))
+                .foregroundColor(.white)
+        }
     }
 }
